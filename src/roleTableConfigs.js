@@ -215,11 +215,10 @@ export const roleTableConfigs = {
     }
   },
 
-  // HR - Human resources management
   hr: {
     employee: {
       displayName: 'Employees',
-      columns: ['empid', 'full_name', 'email', 'phone', 'department', 'role', 'status'],
+      columns: ['empid', 'full_name', 'email', 'phone', 'department', 'role', 'status', 'kpiscore'],
       formFields: [
         { name: 'full_name', label: 'Full Name', type: 'text', required: true },
         { name: 'email', label: 'Email', type: 'email', required: true },
@@ -228,7 +227,49 @@ export const roleTableConfigs = {
         { name: 'department', label: 'Department', type: 'text' },
         { name: 'gender', label: 'Gender', type: 'select', options: ['Male', 'Female', 'Other'] },
         { name: 'status', label: 'Status', type: 'select', options: ['Active', 'Inactive'] },
+        { name: 'basicsalary', label: 'Basic Salary', type: 'number' },
+        { name: 'kpiscore', label: 'KPI Score', type: 'number', min: 0, max: 100 },
         { name: 'join_date', label: 'Join Date', type: 'date' }
+      ]
+    },
+    kpi: {
+      displayName: 'KPI Records',
+      columns: ['kpiid', 'empid', 'kpivalue', 'calculatedate', 'kpiyear'],
+      formFields: [
+        { name: 'empid', label: 'Employee ID', type: 'text', required: true },
+        { name: 'kpivalue', label: 'KPI Value', type: 'number', min: 0, max: 100, required: true },
+        { name: 'calculatedate', label: 'Calculation Date', type: 'date', required: true },
+        { name: 'kpiyear', label: 'KPI Year', type: 'number', required: true }
+      ]
+    },
+    kpi_categories: {
+      displayName: 'KPI Categories',
+      columns: ['id', 'category_name', 'description', 'weight', 'is_active'],
+      formFields: [
+        { name: 'category_name', label: 'Category Name', type: 'text', required: true },
+        { name: 'description', label: 'Description', type: 'textarea' },
+        { name: 'weight', label: 'Weight', type: 'number', min: 1, max: 10 },
+        { name: 'is_active', label: 'Active', type: 'switch' }
+      ]
+    },
+    kpi_details: {
+      displayName: 'KPI Details',
+      columns: ['id', 'kpiid', 'category_id', 'score', 'comments'],
+      formFields: [
+        { name: 'kpiid', label: 'KPI ID', type: 'text', required: true },
+        { name: 'category_id', label: 'Category ID', type: 'text', required: true },
+        { name: 'score', label: 'Score', type: 'number', min: 0, max: 100, required: true },
+        { name: 'comments', label: 'Comments', type: 'textarea' }
+      ]
+    },
+    performance_rating: {
+      displayName: 'Performance Ratings',
+      columns: ['ratingid', 'empid', 'rating', 'rating_date', 'comments'],
+      formFields: [
+        { name: 'empid', label: 'Employee ID', type: 'text', required: true },
+        { name: 'rating', label: 'Rating', type: 'number', min: 1, max: 5, required: true },
+        { name: 'comments', label: 'Comments', type: 'textarea' },
+        { name: 'rating_date', label: 'Rating Date', type: 'date', required: true }
       ]
     },
     employeeleave: {
